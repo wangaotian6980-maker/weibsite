@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>复古极简个人主页 | Editorial Style</title>
+    <!-- 引入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 Google 字体：Bebas Neue (用于大标题) 和 Inter (用于正文) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        /* 完美还原原图的复古色系 */
+                        'retro-bg': '#6c705d',      /* 橄榄绿背景 */
+                        'retro-text': '#efece1',    /* 奶油白文字 */
+                        'retro-border': '#858976',  /* 半透明质感分割线 */
+                        'retro-btn': '#d0d4c2',     /* 药丸按钮底色 */
+                        'retro-btn-text': '#3a3d31' /* 药丸按钮文字颜色 */
+                    },
+                    fontFamily: {
+                        'bebas': ['"Bebas Neue"', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 移除数字输入框的默认箭头 */
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
+<body class="bg-retro-bg text-retro-text font-inter antialiased min-h-screen flex flex-col">
+
+    <!-- 顶部导航栏 (还原图中的 Your Site Title, Login, Cart, Purchase Button) -->
+    <nav class="border-b border-retro-border px-6 md:px-12 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
+        <!-- 左侧 Logo / 网站标题 -->
+        <div class="font-bebas text-3xl tracking-widest uppercase">
+            ALEX REYNOLDS
+        </div>
+        
+        <!-- 右侧链接与按钮 -->
+        <div class="flex items-center gap-8 text-sm font-medium">
+            <a href="#" class="hover:opacity-70 transition-opacity">Work</a>
+            <a href="#" class="hover:opacity-70 transition-opacity">About (0)</a>
+            <button class="bg-retro-btn text-retro-btn-text px-6 py-2.5 rounded-full hover:bg-white transition-colors duration-300">
+                Contact Me
+            </button>
+        </div>
+    </nav>
+
+    <!-- 超大横幅标语 (还原图中的 DEBUT NOVEL OUT NOW) -->
+    <header class="border-b border-retro-border py-16 md:py-24 px-4 text-center overflow-hidden">
+        <h1 class="font-bebas text-7xl md:text-[12vw] leading-none tracking-normal whitespace-nowrap">
+            NEW PORTFOLIO OUT NOW
+        </h1>
+    </header>
+
+    <!-- 主要内容区 (左右分栏设计) -->
+    <main class="flex-grow flex flex-col md:flex-row w-full">
+        
+        <!-- 左侧：图片区域 (还原图中的书籍封面) -->
+        <!-- 使用一张自然风光的 Unsplash 图片作为占位，风格偏向暖色调以契合绿色背景 -->
+        <div class="w-full md:w-1/2 border-b md:border-b-0 md:border-r border-retro-border p-8 md:p-16 flex items-center justify-center">
+            <div class="relative w-full max-w-md aspect-[4/5] overflow-hidden shadow-2xl bg-[#d0d4c2]">
+                <img 
+                    src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                    alt="Portfolio Cover" 
+                    class="w-full h-full object-cover opacity-90"
+                >
+                <!-- 图片上的装饰文字，还原图中的大写黄色 MANUAL -->
+                <div class="absolute bottom-8 left-0 w-full text-center">
+                    <h2 class="font-bebas text-6xl md:text-8xl text-[#ffd700] mix-blend-overlay opacity-90 tracking-widest">CREATIVE</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- 右侧：详情与交互区域 (还原图中的商品详情与购买) -->
+        <div class="w-full md:w-1/2 p-8 md:p-16 flex flex-col justify-center">
+            
+            <!-- 标题模块 -->
+            <div class="mb-6">
+                <h2 class="font-bebas text-5xl md:text-6xl leading-[0.9] mb-2 uppercase">
+                    CONSULTING BY<br>ALEX REYNOLDS
+                </h2>
+                <div class="font-bebas text-3xl md:text-4xl mt-4 tracking-wider">
+                    $150.00 / HR
+                </div>
+            </div>
+
+            <!-- 正文描述 -->
+            <div class="text-sm md:text-base leading-relaxed opacity-85 max-w-md mb-10 font-light">
+                <p>This is the premium design and development consultation package. It has been trusted by numerous startups and enterprise clients to shape their digital presence.</p>
+            </div>
+
+            <!-- 操作按钮 (加减法与预定) -->
+            <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                
+                <!-- 还原原图风格的加减数字选择器 -->
+                <div class="flex items-center border border-retro-border rounded-full px-2 py-2 w-32 justify-between bg-transparent">
+                    <button onclick="updateQty(-1)" class="w-8 h-8 flex items-center justify-center text-lg hover:opacity-50 transition-opacity focus:outline-none">&minus;</button>
+                    <input type="number" id="qty" value="1" min="1" max="10" class="w-8 text-center bg-transparent text-retro-text font-medium focus:outline-none" readonly>
+                    <button onclick="updateQty(1)" class="w-8 h-8 flex items-center justify-center text-lg hover:opacity-50 transition-opacity focus:outline-none">&plus;</button>
+                </div>
+
+                <!-- 还原原图的 Add to cart 按钮 -->
+                <button class="bg-retro-btn text-retro-btn-text px-10 py-3.5 rounded-full font-medium hover:bg-white transition-colors duration-300 w-full sm:w-auto text-center">
+                    Book Session
+                </button>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- 简单的脚本处理数量加减 -->
+    <script>
+        function updateQty(change) {
+            const input = document.getElementById('qty');
+            let currentVal = parseInt(input.value) || 1;
+            let newVal = currentVal + change;
+            if (newVal >= 1 && newVal <= 10) { // 限制范围 1-10
+                input.value = newVal;
+            }
+        }
+    </script>
+</body>
+</html>
